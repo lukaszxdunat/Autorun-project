@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ItemDetailComponent } from './items/item-detail/item-detail.component';
     ItemListComponent,
     HeaderComponent,
     ItemDetailComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { ItemDetailComponent } from './items/item-detail/item-detail.component';
     RouterModule.forRoot([
       { path: 'products', component: ItemListComponent},
       { path: 'products/:id', component: ItemDetailComponent},
+      { path: 'about-us', component: AboutUsComponent},
       { path: '**', redirectTo: 'products', pathMatch: 'full'}
     ])
   ],
