@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
+import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
-    HeaderComponent
+    HeaderComponent,
+    ItemDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     RouterModule.forRoot([
       { path: 'products', component: ItemListComponent},
+      { path: 'products/:id', component: ItemDetailComponent},
       { path: '**', redirectTo: 'products', pathMatch: 'full'}
     ])
   ],

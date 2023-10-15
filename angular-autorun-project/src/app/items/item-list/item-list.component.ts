@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { IItem } from "./item";
 import { ItemService } from "./services/item.service";
+import { Subscription } from "rxjs";
 
 
 @Component({
@@ -16,6 +17,7 @@ export class ItemListComponent {
   elements: IItem[] = [];
   _listFilter: string ='';
   errorMessage: string ='';
+  sub!: Subscription;
 
   constructor (private itemService: ItemService ) {}
 
@@ -37,7 +39,7 @@ export class ItemListComponent {
 
  
   ngOnInit(): void {
-    this.itemService.getProducts().subscribe({
+    this.sub = this.itemService.getProducts().subscribe({
       next: products => { 
         this.elements = products;
         this.filteredElemets = this.elements;
@@ -45,4 +47,9 @@ export class ItemListComponent {
       error: err => this.errorMessage = err
     });
   }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
 }

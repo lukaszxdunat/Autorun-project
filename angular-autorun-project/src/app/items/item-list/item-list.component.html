@@ -27,7 +27,11 @@
                             [style.width.px]='imageWidth'
                             [style.margin.px]='imageMargin'>
                         </td>
-                        <td>{{element.productName}}</td>
+                        <td>
+                            <a [routerLink]="['/products', element.productId]">
+                            {{element.productName}}
+                            </a>
+                        </td>
                         <td>{{element.productCode}}</td>
                         <td>{{element.releaseDate}}</td>
                         <td>{{element.description}}</td>
