@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-header">
+        {{pageTitle}}
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-4">
+                <input type="text"
+                [(ngModel)]='listFilter'/>
+            </div>
+        </div>
+        <div class='table-responsive'>
+            <table class="table" *ngIf="elements.length">                
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Prodcut</th>
+                        <th>Code</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let element of filteredElemets">
+                        <td><img
+                            [src]='element.imageUrl'
+                            [style.width.px]='imageWidth'
+                            [style.margin.px]='imageMargin'>
+                        </td>
+                        <td>{{element.productName}}</td>
+                        <td>{{element.productCode}}</td>
+                        <td>{{element.releaseDate}}</td>
+                        <td>{{element.description}}</td>
+                        <td>{{element.price}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
