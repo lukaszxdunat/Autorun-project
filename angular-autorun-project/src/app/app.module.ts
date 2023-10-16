@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HeaderComponent } from './header/header.component';
-import { RouterModule } from '@angular/router';
 import { ItemDetailComponent } from './items/item-detail/item-detail.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -37,12 +36,6 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    RouterModule.forRoot([
-      { path: 'products', component: ItemListComponent},
-      { path: 'products/:id', component: ItemDetailComponent},
-      { path: 'about-us', component: AboutUsComponent},
-      { path: '**', redirectTo: 'products', pathMatch: 'full'}
-    ]),
     NgbModule,
     BrowserAnimationsModule
   ],
