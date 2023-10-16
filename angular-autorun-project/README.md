@@ -1,26 +1,37 @@
-# AngularAutorunProject
+## AngularAutorunProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.1.
+## Features
+List the key features of the Angular application:
+
+Main Page: Main page with a grid of elements and a navigation bar, 
+App has the ability to double-click on a row to edit and save changes.
+Details Page: When you click on row you will be redirected to the details page.
+
+## Data Interaction
+I got the data form the JSON "local API" because I couldn't find a free fake API that met my requirements. 
+Sending data using the put to {JSON} Placeholder Free fake API method, it worked, as evidenced by the logs in the console.
+
+## Advanced Dynamic Data Table
+Unfortunately, pagination and sorting could not be done because I wanted to complete the task in about 120 minutes.
+
+## Technologies Used
+List the technologies, libraries, and frameworks used in your application. For example:
+
+Angular
+Angular Material
+Node.js
+JSONPlaceholder API
+
+## Clone repository:
+git clone https://github.com/lukaszxdunat/Autorun-project
+cd angular-autorun-project
+
+## Install Dependencies
+npm install
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ## Further help
 
