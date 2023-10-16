@@ -26,6 +26,21 @@ export class ItemService {
       );
   }
 
+  updateProduct(item: any): any {
+
+    const urla: string = "https://jsonplaceholder.typicode.com/posts/1";
+    const headers = { 'Content-type': 'application/json; charset=UTF-8' }
+    const url = urla + "/" + item.productId
+    const body = JSON.stringify({
+      id: item.productId,
+      title: item.productName,
+      body: item.description,
+      userId: 1,
+    })
+
+    this.http.put<any>(urla, body, { headers }).subscribe(data => item.productId = data)
+  }
+
   private handleError(err: HttpErrorResponse): Observable<never> {
 
     let errorMessage = '';

@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ItemListComponent } from '../items/item-list/item-list.component';
 import { IItem } from '../items/item-list/item';
+import { ItemService } from '../items/item-list/services/item.service';
 
 
 @Component({
@@ -16,15 +17,16 @@ export class TableDialogComponent implements OnInit {
   description: string = "Edit row";
 
   form = this.fb.group({
-    product: [this.item.productName, Validators.required],
-    code: [this.item.productCode, Validators.required],
+    productName: [this.item.productName, Validators.required],
+    productCode: [this.item.productCode, Validators.required],
     description: [this.item.description, Validators.required],
-    price: [this.item.price, Validators.required],
+    productPrice: [this.item.price, Validators.required],
   });
 
   constructor(private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) private item: IItem,
-    private dialogRef: MatDialogRef<TableDialogComponent>) { }
+    private dialogRef: MatDialogRef<TableDialogComponent>,
+    private itemService: ItemService) { }
 
   ngOnInit(): void {
 
@@ -36,6 +38,7 @@ export class TableDialogComponent implements OnInit {
 
   save() {
     this.dialogRef.close(this.form.value);
+    this.itemService.updateProduct(this.form.value);
   }
 
 }
@@ -50,7 +53,7 @@ export function openEditRowDialog(dialog: MatDialog, item: IItem) {
   config.data = {
     ...item
   }
-
+  console.log(item);
   const dialogRef = dialog.open(TableDialogComponent, config);
 
   return dialogRef.afterClosed()

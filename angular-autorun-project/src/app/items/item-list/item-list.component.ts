@@ -63,16 +63,15 @@ export class ItemListComponent {
     }, delay);
   }
 
-  editRow(element: IItem) {
+  editRow(item: IItem) {
     this.preventSingleClick = true;
     clearTimeout(this.timer);
-    openEditRowDialog(this.dialog, element)
+
+    openEditRowDialog(this.dialog, item)
       .pipe(
-        filter(val => !!val)
+        filter(value => !!value)
       )
-      .subscribe(
-        val => console.log("New test", val)
-      );
+      .subscribe();
   }
 
 }
