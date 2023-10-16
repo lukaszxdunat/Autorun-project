@@ -8,9 +8,6 @@ import { IItem } from "../item";
   providedIn: 'root'
 })
 export class ItemService {
-  // If using Stackblitz, replace the url with this line
-  // because Stackblitz can't find the api folder.
-  // private productUrl = 'assets/products/products.json';
   private productUrl = 'assets/products/products.json';
 
   constructor(private http: HttpClient) { }
@@ -18,7 +15,6 @@ export class ItemService {
   getProducts(): Observable<IItem[]> {
     return this.http.get<IItem[]>(this.productUrl)
       .pipe(
-        tap(data => console.log('All: ', JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
@@ -31,7 +27,7 @@ export class ItemService {
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
-    
+
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
       errorMessage = `An error occurred: ${err.error.message}`;

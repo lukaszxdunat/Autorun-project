@@ -16,8 +16,8 @@ export class ItemDetailComponent {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private itemService: ItemService) {}
-  
+    private itemService: ItemService) { }
+
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if (id) {
