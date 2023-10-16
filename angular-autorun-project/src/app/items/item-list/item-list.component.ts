@@ -1,7 +1,10 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component } from "@angular/core";
 import { IItem } from "./item";
 import { ItemService } from "./services/item.service";
-import { Subscription } from "rxjs";
+import { Subscription, filter } from "rxjs";
+import { Router } from "@angular/router";
+import { openEditRowDialog } from "src/app/table-dialog/table-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 
 @Component({
@@ -15,32 +18,18 @@ export class ItemListComponent {
   imageMargin: number = 2;
   filteredElemets: IItem[] = [];
   elements: IItem[] = [];
-  _listFilter: string ='';
-  errorMessage: string ='';
+  _listFilter: string = '';
+  errorMessage: string = '';
   sub!: Subscription;
+  preventSingleClick = false;
+  timer: any;
+  delay: Number | undefined;
 
-  constructor (private itemService: ItemService ) {}
+  constructor(private itemService: ItemService, private router: Router, private dialog: MatDialog) { }
 
-  get listFilter() :string {
-    return this._listFilter
-  }
-
-  set listFilter(value: string) {
-    this._listFilter = value;
-    console.log("W setterze", value)
-    this.filteredElemets = this.performFilter(value);
-  }
-
-  performFilter(filterBy: string): IItem[] {
-    filterBy = filterBy.toLocaleLowerCase();
-    return this.elements.filter((product: IItem) =>
-      product.productName.toLocaleLowerCase().includes(filterBy));
-  }
-
- 
   ngOnInit(): void {
     this.sub = this.itemService.getProducts().subscribe({
-      next: products => { 
+      next: products => {
         this.elements = products;
         this.filteredElemets = this.elements;
       },
@@ -50,6 +39,40 @@ export class ItemListComponent {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  set listFilter(value: string) {
+    this._listFilter = value;
+    this.filteredElemets = this.performFilter(value);
+  }
+
+  performFilter(filterBy: string): IItem[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.elements.filter((product: IItem) =>
+      product.productName.toLocaleLowerCase().includes(filterBy));
+  }
+
+  openDetails(element: any) {
+    this.preventSingleClick = false;
+    const delay = 300;
+    this.timer = setTimeout(() => {
+      if (!this.preventSingleClick) {
+        const url = 'products/' + element;
+        this.router.navigateByUrl(url)
+      }
+    }, delay);
+  }
+
+  editRow(element: IItem) {
+    this.preventSingleClick = true;
+    clearTimeout(this.timer);
+    openEditRowDialog(this.dialog, element)
+      .pipe(
+        filter(val => !!val)
+      )
+      .subscribe(
+        val => console.log("New test", val)
+      );
   }
 
 }

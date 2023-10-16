@@ -1,0 +1,26 @@
+<div class="edit-table-row">
+    <h2 mat-dialog-title>{{description}}</h2>
+    <mat-dialog-content [formGroup]="form">
+        <mat-form-field>
+            <input matInput placeholder="Product" formControlName="product">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Code" formControlName="code">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Description" formControlName="description">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="Price" formControlName="price">
+        </mat-form-field>
+
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-raised-button (click)="close()">Close</button>
+        <button mat-raised-button color="primary" (click)="save()">Save</button>
+    </mat-dialog-actions>
+</div>

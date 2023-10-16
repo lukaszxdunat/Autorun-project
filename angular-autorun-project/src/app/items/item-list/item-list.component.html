@@ -6,34 +6,27 @@
         <div class="row">
             <div class="col-md-2">Filter by:</div>
             <div class="col-md-4">
-                <input type="text"
-                [(ngModel)]='listFilter'/>
+                <input type="text" [(ngModel)]='listFilter' />
             </div>
         </div>
         <div class='table-responsive'>
-            <table class="table" *ngIf="elements.length">                
+            <table class="table" *ngIf="elements.length">
                 <thead>
                     <tr>
                         <th>Image</th>
                         <th>Prodcut</th>
                         <th>Code</th>
+                        <th>Description</th>
                         <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let element of filteredElemets">
-                        <td><img
-                            [src]='element.imageUrl'
-                            [style.width.px]='imageWidth'
-                            [style.margin.px]='imageMargin'>
+                    <tr *ngFor="let element of filteredElemets" (click)="openDetails(element.productId)"
+                        (dblclick)="editRow(element)">
+                        <td><img [src]='element.imageUrl' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
                         </td>
-                        <td>
-                            <a [routerLink]="['/products', element.productId]">
-                            {{element.productName}}
-                            </a>
-                        </td>
+                        <td>{{element.productName}}</td>
                         <td>{{element.productCode}}</td>
-                        <td>{{element.releaseDate}}</td>
                         <td>{{element.description}}</td>
                         <td>{{element.price}}</td>
                     </tr>
